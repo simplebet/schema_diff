@@ -5,12 +5,11 @@ defmodule Mix.Tasks.Schema.DiffAll do
   def run([directory]) do
     directory
     |> File.ls!()
-    |> IO.inspect()
+    |> Enum.map(&Path.join(directory, &1))
     |> SchemaDiff.pairs()
     |> Enum.each(fn {a, b} ->
-      # TODO
-      # Mix.Task.run()
-      :ok
+      Mix.Task.reenable("schema.diff")
+      Mix.Task.run("schema.diff", [a, b])
     end)
   end
 

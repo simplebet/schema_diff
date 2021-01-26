@@ -3,7 +3,19 @@ defmodule SchemaDiffTest do
   doctest SchemaDiff, import: true
 
   test "parse/1 can ingest elixir terms" do
-    assert SchemaDiff.parse("%{a: 1}") == %{a: 1}
+    assert SchemaDiff.parse("%{a: 1}", ".ex") == %{type: :object, sub_type: %{a: :number}}
+    assert SchemaDiff.parse("%{a: 1}", ".exs") == %{type: :object, sub_type: %{a: :number}}
+  end
+
+  test "parse/1 can ingest json" do
+    assert SchemaDiff.parse(~S({"a": 1}), ".json") == %{type: :object, sub_type: %{a: :number}}
+  end
+
+  test "parse/1 can ingest schemas" do
+    assert SchemaDiff.parse(~S({"type": "object", "sub_type": {"a": "number"}}), ".schema") == %{
+             type: :object,
+             sub_type: %{a: :number}
+           }
   end
 
   test "to_schema/1 converts elixir terms to a schema" do
