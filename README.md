@@ -33,10 +33,8 @@ Diffs two files
 ``` bash
 $ echo '{"a": 1}' > one.json
 $ echo '{"a": "hello"}' > two.json
-$ mix schema.diff ./one.json ./two.json
---- /dev/fd/63	2021-01-26 13:38:13.000000000 -0500
-+++ /dev/fd/62	2021-01-26 13:38:13.000000000 -0500
-@@ -1,6 +1,6 @@
+$ mix schema.diff one.json two.json
+one.json <> two.json
  {
    "sub_type": {
 -    "a": "number"
@@ -52,10 +50,7 @@ If you have a directory of files that you would like to compare, diffing is simp
 
 ### Example
 ``` bash
-$ mix schema.diff_all ./my_directory
---- /dev/fd/63	2021-01-26 13:38:13.000000000 -0500
-+++ /dev/fd/62	2021-01-26 13:38:13.000000000 -0500
-@@ -1,6 +1,6 @@
+ data/examples/1.json <> data/examples/2.json
  {
    "sub_type": {
 -    "a": "number"
@@ -63,9 +58,7 @@ $ mix schema.diff_all ./my_directory
    },
    "type": "object"
  }
---- /dev/fd/63	2021-01-26 13:38:14.000000000 -0500
-+++ /dev/fd/62	2021-01-26 13:38:14.000000000 -0500
-@@ -1,6 +1,11 @@
+data/examples/1.json <> data/examples/3.json
  {
    "sub_type": {
 -    "a": "number"
@@ -78,9 +71,7 @@ $ mix schema.diff_all ./my_directory
    },
    "type": "object"
  }
---- /dev/fd/63	2021-01-26 13:38:14.000000000 -0500
-+++ /dev/fd/62	2021-01-26 13:38:14.000000000 -0500
-@@ -1,6 +1,11 @@
+data/examples/2.json <> data/examples/3.json
  {
    "sub_type": {
 -    "a": "string"
@@ -90,24 +81,6 @@ $ mix schema.diff_all ./my_directory
 +      },
 +      "type": "object"
 +    }
-   },
-   "type": "object"
- }
-```
-
-## schema.diff
-Diffs two files
-
-### Example
-``` bash
-$ mix schema.diff ./one.json ./two.json
---- /dev/fd/63	2021-01-26 13:38:13.000000000 -0500
-+++ /dev/fd/62	2021-01-26 13:38:13.000000000 -0500
-@@ -1,6 +1,6 @@
- {
-   "sub_type": {
--    "a": "number"
-+    "a": "string"
    },
    "type": "object"
  }

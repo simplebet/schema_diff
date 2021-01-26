@@ -14,6 +14,6 @@ defmodule Mix.Tasks.Schema.DiffAll do
   end
 
   def run(_args) do
-    IO.puts("mix schema.diff_all <directory>")
+    Mix.shell().info("mix schema.diff_all <directory>")
   end
 end
