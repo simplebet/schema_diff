@@ -4,7 +4,50 @@ SchemaDiff is a set of mix tasks for comparing the structure of JSON payloads. I
 
 # Usage
 
-## Diff All
+## schema
+Generate a schema from a file, prints to STDOUT
+
+Accepts the following extensions:
+* `.ex`
+* `.exs`
+* `.json`
+* `.schema`
+
+### Example
+``` bash
+$ echo '{"a": 1}' > one.json
+$ mix schema ./one.json
+{
+  "sub_type": {
+    "a": "number"
+  },
+  "type": "object"
+}
+
+```
+
+## schema.diff
+Diffs two files
+
+### Example
+``` bash
+$ echo '{"a": 1}' > one.json
+$ echo '{"a": "hello"}' > two.json
+$ mix schema.diff ./one.json ./two.json
+--- /dev/fd/63	2021-01-26 13:38:13.000000000 -0500
++++ /dev/fd/62	2021-01-26 13:38:13.000000000 -0500
+@@ -1,6 +1,6 @@
+ {
+   "sub_type": {
+-    "a": "number"
++    "a": "string"
+   },
+   "type": "object"
+ }
+```
+
+
+## schema.diff_all
 If you have a directory of files that you would like to compare, diffing is simple.
 
 ### Example
@@ -52,7 +95,7 @@ $ mix schema.diff_all ./my_directory
  }
 ```
 
-## Diff
+## schema.diff
 Diffs two files
 
 ### Example
@@ -68,25 +111,4 @@ $ mix schema.diff ./one.json ./two.json
    },
    "type": "object"
  }
-```
-
-## Schema
-Generate a schema from a file, prints to STDOUT
-
-Accepts the following extensions:
-* `.ex`
-* `.exs`
-* `.json`
-* `.schema`
-
-### Example
-``` bash
-$ mix schema ./one.json
-{
-  "sub_type": {
-    "a": "number"
-  },
-  "type": "object"
-}
-
 ```
