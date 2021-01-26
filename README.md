@@ -50,6 +50,7 @@ If you have a directory of files that you would like to compare, diffing is simp
 
 ### Example
 ``` bash
+$ mix schema.diff_all data/examples
  data/examples/1.json <> data/examples/2.json
  {
    "sub_type": {
